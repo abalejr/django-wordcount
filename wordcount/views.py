@@ -13,13 +13,19 @@ def count(request):
     worddict = {}
 
     for word in wordlist:
-        if word == "-":
+        scrap_chars = "!.?,;:\"'{}[]()/"
+        for char in scrap_chars:
+            word = word.replace(char, "")
+
+        lword = word.lower()
+
+        if lword == "-":
             textlength -= 1
         else:
-            if word in worddict:
-                worddict[word] += 1
+            if lword in worddict:
+                worddict[lword] += 1
             else:
-                worddict[word] = 1
+                worddict[lword] = 1
 
     sortedwords = sorted(worddict.items(), key=operator.itemgetter(1), reverse=True)
                 
