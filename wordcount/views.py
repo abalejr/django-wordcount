@@ -1,13 +1,9 @@
 import operator
-import random
 from django.http import HttpResponse
 from django.shortcuts import render
 
 def home(request):
     return render(request, "home.html", {"snacks": "pistachio"})
-
-def about(request):
-    return render(request, "about.html", {"age": random.randint(21,121)})
 
 def count(request):
     fulltext = request.GET['fulltext']
